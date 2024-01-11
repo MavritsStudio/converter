@@ -34,8 +34,9 @@ const ConverterPage = () => {
   const [error, setError] = useState("");
   const [isOutputExists, setIsOutputExists] = useState(false);
   const [isInitialView, setIsInitialView] = useState(true);
+  const [submitIsHidden, setSubmitIsHidden] = useState(true);
 
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit, setValue, watch } = useForm();
 
   const outputAreaRef = useRef();
   const downloadLinkRef = useRef();
@@ -73,6 +74,7 @@ const ConverterPage = () => {
 
         outputAreaRef.current.value = output.join("\r\n").trim();
         setIsOutputExists(true);
+        setSubmitIsHidden(true);
       })
       .catch((err) => {
         console.error("ERROR", err.message);
@@ -91,7 +93,7 @@ const ConverterPage = () => {
     });
     downloadLink.href = URL.createObjectURL(file);
     downloadLink.click();
-  }, []);
+  }, [outputAreaRef, downloadLinkRef]);
 
   const copyHandler = useCallback(() => {
     const currentOutput = outputAreaRef.current;
@@ -103,7 +105,11 @@ const ConverterPage = () => {
     }
 
     navigator.clipboard.writeText(currentOutput.value);
-  }, []);
+  }, [outputAreaRef]);
+
+  const hideSubmitHandler = useCallback(() => {
+    setSubmitIsHidden(!watch("input-json"));
+  }, [watch]);
 
   return (
     <div className='converter-page page' id='converter'>
@@ -159,6 +165,7 @@ const ConverterPage = () => {
                 onFocus={() => setIsInitialView(false)}
                 {...register("input-json", {
                   required: "The input can not be blank.",
+                  onChange: hideSubmitHandler,
                 })}
               />
             </div>
@@ -210,7 +217,11 @@ const ConverterPage = () => {
             </div>
           </div>
 
-          <div className='submit__container'>
+          <div
+            className={`submit__container ${
+              submitIsHidden || isInitialView ? "hidden" : ""
+            }`.trim()}
+          >
             <button type='submit'>Конвертировать</button>
           </div>
         </div>
@@ -229,7 +240,9 @@ const ConverterPage = () => {
                     id={INPUT_MAP.ENUM_OR_UNION.isEnum}
                     value={INPUT_MAP.ENUM_OR_UNION.isEnum}
                     defaultChecked
-                    {...register(INPUT_MAP.ENUM_OR_UNION.name)}
+                    {...register(INPUT_MAP.ENUM_OR_UNION.name, {
+                      onChange: hideSubmitHandler,
+                    })}
                   />
 
                   <label
@@ -246,7 +259,9 @@ const ConverterPage = () => {
                     name={INPUT_MAP.ENUM_OR_UNION.name}
                     id={INPUT_MAP.ENUM_OR_UNION.isUnion}
                     value={INPUT_MAP.ENUM_OR_UNION.isUnion}
-                    {...register(INPUT_MAP.ENUM_OR_UNION.name)}
+                    {...register(INPUT_MAP.ENUM_OR_UNION.name, {
+                      onChange: hideSubmitHandler,
+                    })}
                   />
 
                   <label
@@ -268,7 +283,9 @@ const ConverterPage = () => {
                     id={INPUT_MAP.TYPE_OR_INTERFACE.isType}
                     value={INPUT_MAP.TYPE_OR_INTERFACE.isType}
                     defaultChecked
-                    {...register(INPUT_MAP.TYPE_OR_INTERFACE.name)}
+                    {...register(INPUT_MAP.TYPE_OR_INTERFACE.name, {
+                      onChange: hideSubmitHandler,
+                    })}
                   />
 
                   <label
@@ -285,7 +302,9 @@ const ConverterPage = () => {
                     name={INPUT_MAP.TYPE_OR_INTERFACE.name}
                     id={INPUT_MAP.TYPE_OR_INTERFACE.isInterface}
                     value={INPUT_MAP.TYPE_OR_INTERFACE.isInterface}
-                    {...register(INPUT_MAP.TYPE_OR_INTERFACE.name)}
+                    {...register(INPUT_MAP.TYPE_OR_INTERFACE.name, {
+                      onChange: hideSubmitHandler,
+                    })}
                   />
 
                   <label
@@ -304,7 +323,9 @@ const ConverterPage = () => {
               <input
                 type='checkbox'
                 id={INPUT_MAP.SUMMARIZE_SIMILAR_CLASSES.name}
-                {...register(INPUT_MAP.SUMMARIZE_SIMILAR_CLASSES.name)}
+                {...register(INPUT_MAP.SUMMARIZE_SIMILAR_CLASSES.name, {
+                  onChange: hideSubmitHandler,
+                })}
               />
               <label htmlFor={INPUT_MAP.SUMMARIZE_SIMILAR_CLASSES.name}>
                 Обобщить похожие классы
