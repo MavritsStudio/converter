@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import CollapsedSettingsIcon from "./CollapsedSettingsIcon";
+
 const SettingsBar = ({ children }) => {
   const [isOpened, setIsOpened] = useState(false);
 
@@ -15,7 +17,9 @@ const SettingsBar = ({ children }) => {
       >
         <header>
           <div className='logo'>
-            <span className='capital'>К</span>
+            <span className='capital'>
+              <CollapsedSettingsIcon />
+            </span>
           </div>
         </header>
 
