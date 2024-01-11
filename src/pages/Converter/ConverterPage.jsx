@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
@@ -42,7 +42,11 @@ const ConverterPage = () => {
   const downloadLinkRef = useRef();
 
   const reader = new FileReader();
-  reader.onload = (e) => setValue("input-json", e.target.result);
+  reader.onload = (e) => {
+    setValue("input-json", e.target.result);
+    setSubmitIsHidden(false);
+    setIsInitialView(false);
+  };
   reader.onerror = () => setError("Error on reading file, try another file.");
 
   const convertHandler = (data) => {
