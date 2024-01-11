@@ -16,7 +16,7 @@
 
       .logo {
         font-style: normal;
-        font-weight: bold;
+        font-weight: 500;
         line-height: normal;
         color: $gray-900;
 
@@ -43,6 +43,7 @@
         height: 100%;
         align-items: center;
         overflow: hidden;
+        padding-bottom: 70px;
 
         header {
           width: 100%;
@@ -59,7 +60,7 @@
           color: $gray-700;
 
           span {
-            transform: rotate(90deg);
+            transform: rotate(90deg) translateX(-50%);
           }
         }
 
@@ -75,7 +76,7 @@
 
         header {
           font-style: normal;
-          font-weight: bold;
+          font-weight: 500;
           line-height: normal;
           color: $gray-900;
         }
@@ -113,9 +114,11 @@
                 box-sizing: border-box;
                 padding: 0.5em 1.5em;
                 color: $gray-500;
+                border: 1px solid transparent;
                 transition-duration: 0.3s;
 
                 &:hover {
+                  border-color: currentColor;
                   cursor: pointer;
                 }
               }
@@ -123,6 +126,7 @@
               input[type="radio"]:checked + label {
                 background-color: $black;
                 color: $white;
+                border-color: transparent !important;
               }
             }
           }
@@ -146,6 +150,7 @@
             padding: 0;
             margin: 0;
             font-size: 1em;
+            outline: none;
 
             display: flex;
             width: 1.5em;
@@ -160,7 +165,7 @@
               width: 0.4em;
               aspect-ratio: 1;
               background-color: $gray-300;
-              transition-duration: $duration;
+              transition-duration: calc($duration / 2);
             }
 
             &:checked::after {
@@ -170,6 +175,8 @@
           }
 
           label {
+            display: block;
+            width: 100%;
             color: $gray-700;
           }
 
@@ -209,7 +216,7 @@
 
             &:hover {
               cursor: pointer;
-              color: $gray-700;
+              color: $red;
             }
           }
         }
@@ -257,7 +264,7 @@
         }
       }
 
-      @media screen and (max-width: 1750px) {
+      @media screen and (max-width: 1850px) {
         .settings__container {
           min-width: 450px;
         }
@@ -292,7 +299,7 @@
       .submit__container {
         grid-column: 1 / 4;
         height: 70px;
-        transition-duration: 1s;
+        transition-duration: $duration;
 
         button {
           -webkit-appearance: none;
@@ -300,13 +307,13 @@
           appearance: none;
           border: none;
           font-size: 1em;
-          font-weight: bold;
+          font-weight: 500;
           width: 100%;
           height: 100%;
           background-color: $black;
           color: $white;
           opacity: 1;
-          transition-duration: $duration;
+          transition-duration: inherit;
 
           &:hover {
             background-color: $red;
@@ -350,9 +357,11 @@
 
           .title {
             display: inline-block;
-            font-weight: bold;
+            font-weight: 500;
             background-color: $black;
             color: $white;
+
+            white-space: nowrap;
 
             box-sizing: border-box;
             padding: 0.75em 1.5em;
@@ -384,14 +393,15 @@
             }
 
             .btn {
+              outline: none;
               display: inline-block;
               background-color: $white;
               color: $black;
               font-size: 1em;
               padding: 0.5em 1em;
               border-radius: 0px;
-              border: 1px solid $black;
-              transition-duration: $duration;
+              border: 1.5px solid currentColor;
+              transition-duration: calc($duration / 2);
               display: flex;
               -moz-column-gap: 0.5em;
               column-gap: 0.5em;
@@ -417,7 +427,11 @@
 
               &:not(:disabled):hover {
                 cursor: pointer;
-                border-color: $gray-300;
+                color: $gray-500;
+              }
+
+              &:focus {
+                color: $gray-500;
               }
 
               &:not(:disabled):active {
@@ -443,6 +457,7 @@
 
         textarea {
           border: none;
+          outline: none;
           border-radius: 0px;
           font-size: 1em;
           width: 100%;
@@ -450,7 +465,7 @@
           box-sizing: border-box;
 
           background-color: $gray-100;
-          color: $gray-500;
+          color: $gray-900;
           padding: 1.2em 1.6em;
           resize: none;
         }
