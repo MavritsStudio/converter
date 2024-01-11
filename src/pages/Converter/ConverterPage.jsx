@@ -138,7 +138,11 @@ const ConverterPage = () => {
                     },
                   })}
                 />
-                <label htmlFor='inputFile' className='upload-file-btn btn'>
+                <label
+                  tabIndex='0'
+                  htmlFor='inputFile'
+                  className='upload-file-btn btn'
+                >
                   <div className='decoration'>
                     <ClipIcon />
                   </div>
@@ -228,7 +232,12 @@ const ConverterPage = () => {
                     {...register(INPUT_MAP.ENUM_OR_UNION.name)}
                   />
 
-                  <label htmlFor={INPUT_MAP.ENUM_OR_UNION.isEnum}>ENUM</label>
+                  <label
+                    htmlFor={INPUT_MAP.ENUM_OR_UNION.isEnum}
+                    tabIndex={"0"}
+                  >
+                    ENUM
+                  </label>
                 </div>
 
                 <div>
@@ -240,7 +249,12 @@ const ConverterPage = () => {
                     {...register(INPUT_MAP.ENUM_OR_UNION.name)}
                   />
 
-                  <label htmlFor={INPUT_MAP.ENUM_OR_UNION.isUnion}>UNION</label>
+                  <label
+                    htmlFor={INPUT_MAP.ENUM_OR_UNION.isUnion}
+                    tabIndex={"0"}
+                  >
+                    UNION
+                  </label>
                 </div>
               </div>
             </div>
@@ -257,7 +271,10 @@ const ConverterPage = () => {
                     {...register(INPUT_MAP.TYPE_OR_INTERFACE.name)}
                   />
 
-                  <label htmlFor={INPUT_MAP.TYPE_OR_INTERFACE.isType}>
+                  <label
+                    htmlFor={INPUT_MAP.TYPE_OR_INTERFACE.isType}
+                    tabIndex={"0"}
+                  >
                     TYPE
                   </label>
                 </div>
@@ -271,7 +288,10 @@ const ConverterPage = () => {
                     {...register(INPUT_MAP.TYPE_OR_INTERFACE.name)}
                   />
 
-                  <label htmlFor={INPUT_MAP.TYPE_OR_INTERFACE.isInterface}>
+                  <label
+                    htmlFor={INPUT_MAP.TYPE_OR_INTERFACE.isInterface}
+                    tabIndex={"0"}
+                  >
                     INTERFACE
                   </label>
                 </div>
