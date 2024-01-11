@@ -9,6 +9,7 @@ The lates service version is [here](https://converter.mavritss.ru/).
 ## Table of contents
 
 - [Description](#description)
+- [Technical specification](#technical-specification)
 - [Usage](#usage)
 - [Roadmap](#roadmap)
 - [Authors](#authors)
@@ -63,10 +64,10 @@ Send your feedback or bug report to the our [email](mailto:studio@mavritss.ru).
 
 ## Authors
 
-- [smileman0001](https://github.com/smileman0001)
-- [mavritss](https://github.com/mavritss)
 - [K0ch3rga](https://github.com/K0ch3rga)
 - [ArtyomYaprintsev](https://github.com/ArtyomYaprintsev)
+- [mavritss](https://github.com/mavritss)
+- [smileman0001](https://github.com/smileman0001)
 
 ## License
 
