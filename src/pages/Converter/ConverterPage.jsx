@@ -360,7 +360,7 @@ const ConverterPage = () => {
           <footer>
             <div className='version'>
               <Link
-                to='https://github.com/ArtyomYaprintsev/converter/'
+                to='https://github.com/MavritsStudio/converter/'
                 target='_blank'
               >
                 v 1.2
