@@ -16,7 +16,11 @@ const ErrorPopup = ({ content, closePopup, isOpened = false }) => {
             <h3>Input error</h3>
             <p>{content}</p>
 
-            <button className='close-popup-btn btn' onClick={closePopup}>
+            <button
+              className='close-popup-btn btn'
+              onClick={closePopup}
+              autoFocus
+            >
               Понятно
             </button>
           </main>
