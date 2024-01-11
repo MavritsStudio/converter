@@ -212,11 +212,13 @@
             color: $gray-500;
             transition-duration: $duration;
             text-decoration: none;
+            padding-bottom: 0.15em;
             border-bottom: 1px solid $gray-300;
 
             &:hover {
               cursor: pointer;
               color: $red;
+              border-color: #f7ada7;
             }
           }
         }
@@ -335,10 +337,12 @@
         grid-template-columns: 1fr;
         grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr);
         justify-items: center;
+        transition-duration: $duration;
 
         .line-decoration {
           width: 1.5px;
           background-color: $gray-300;
+          transition-duration: inherit;
         }
 
         .arrow-decoration {
@@ -347,6 +351,17 @@
 
           background: center center no-repeat;
           background-image: url(/src/assets/arrowIcon.svg);
+          transition-duration: inherit;
+        }
+
+        &.active {
+          .line-decoration {
+            background-color: $gray-100;
+          }
+          .arrow-decoration {
+            -webkit-filter: brightness(0);
+            filter: brightness(0);
+          }
         }
       }
 
@@ -408,7 +423,7 @@
               font-size: 1em;
               padding: 0.5em 1em;
               border-radius: 0px;
-              border: 1.5px solid currentColor;
+              border: 1.75px solid currentColor;
               transition-duration: calc($duration / 2);
               display: flex;
               -moz-column-gap: 0.5em;

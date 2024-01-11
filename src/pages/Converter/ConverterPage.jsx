@@ -108,8 +108,8 @@ const ConverterPage = () => {
   }, [outputAreaRef]);
 
   const hideSubmitHandler = useCallback(() => {
-    setSubmitIsHidden(!watch("input-json"));
-  }, [watch]);
+    setSubmitIsHidden(!watch("input-json") && !outputAreaRef.current.value);
+  }, [watch, outputAreaRef]);
 
   return (
     <div className='converter-page page' id='converter'>
@@ -171,7 +171,11 @@ const ConverterPage = () => {
             </div>
           </div>
 
-          <div className='separate__bar'>
+          <div
+            className={`separate__bar ${
+              submitIsHidden || isInitialView ? "" : "active"
+            }`.trim()}
+          >
             <div className='line-decoration'></div>
             <div className='arrow-decoration'></div>
             <div className='line-decoration'></div>
@@ -211,7 +215,10 @@ const ConverterPage = () => {
               <textarea
                 ref={outputAreaRef}
                 style={{ whiteSpace: "pre-wrap" }}
-                onChange={(e) => setIsOutputExists(Boolean(e.target.value))}
+                onChange={(e) => {
+                  setIsOutputExists(Boolean(e.target.value));
+                  hideSubmitHandler();
+                }}
                 onFocus={() => setIsInitialView(false)}
               />
             </div>
